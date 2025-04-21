@@ -1,13 +1,13 @@
 import pandas as pd
 
 # Cargar el dataset
-file_path = 'gym_members_exercise_tracking.xlsx'  # Cambia esto por la ruta de tu archivo
+file_path = 'gym_members_exercise_tracking.csv'  # Cambia esto por la ruta de tu archivo
 df = pd.read_csv(file_path)
 
 # Añadir una columna ID única
 df['id'] = df.index + 1
 
-# Convertir el género de string a int (0 o 1)
+# Convertir el género de string a int (0 o 1) Masculino 1 | Femenino 0
 df['Gender'] = df['Gender'].apply(lambda x: 1 if x.lower() == 'male' else 0)
 
 # Reordenar las columnas para que 'id' sea la primera
