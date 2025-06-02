@@ -90,9 +90,9 @@ def main(args):
     pred_calories = gb_global.predict(all_scaled)[0]
 
     # 8. Imprimir resultados formateados
-    print(f"Grupo {perfil_texto}")
+    print(f"🔵 Grupo {perfil_texto}")
     print(f"{perfil_desc}")
-    print(f"\nCalorías estimadas según tu sesión de entreno: {pred_calories:.2f}")
+    print(f"\n🔵 Calorías estimadas según tu sesión de entreno: {pred_calories:.2f}")
 
 if __name__ == "__main__":
     main(sys.argv[1:])

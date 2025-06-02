@@ -54,9 +54,14 @@ $output = shell_exec($cmd);
 <head>
   <meta charset="UTF-8" />
   <title>Resultado de Predicción</title>
+  <link rel="icon" href='data:image/svg+xml;utf8,
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+      <text y="0.9em" font-size="90">🏋️‍♀️</text>
+    </svg>'>
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
-    body { font-family: Arial, sans-serif; margin: 40px; background: #f9f9f9; }
+    body { font-family: Arial, sans-serif; margin: 20px; background: #f9f9f9; }
     h1 { text-align: center; }
     .result { 
       max-width: 825px; 
@@ -82,10 +87,95 @@ $output = shell_exec($cmd);
     <div class="result">
       <pre><?php echo htmlspecialchars($output); ?></pre>
     </div>
-    <a href="index.php">&larr; Volver al formulario</a>
-  </div>
-</div>  
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <h4 class="text-center text-primary">🏅 Tu sesión de entrenamiento 🏅</h4>
+    <!-- Zona con la tabla de valores ingresados -->
+    <div class="mb-10">
+      <div class="row">
+        <!-- Primera columna -->
+        <div class="col-md-6">
+          <table class="table table-striped">
+            <tbody>
+              <tr>
+                <th scope="row">Edad (años)</th>
+                <td><?php echo htmlspecialchars($age, ENT_QUOTES, 'UTF-8'); ?></td>
+              </tr>
+              <tr>
+                <th scope="row">Peso (kg)</th>
+                <td><?php echo htmlspecialchars($weight, ENT_QUOTES, 'UTF-8'); ?></td>
+              </tr>
+              <tr>
+                <th scope="row">Altura (m)</th>
+                <td><?php echo htmlspecialchars($height, ENT_QUOTES, 'UTF-8'); ?></td>
+              </tr>
+              <tr>
+                <th scope="row">BMI</th>
+                <td><?php echo htmlspecialchars($bmi, ENT_QUOTES, 'UTF-8'); ?></td>
+              </tr>
+              <tr>
+                <th scope="row">% Grasa Corporal</th>
+                <td><?php echo htmlspecialchars($fat_pct, ENT_QUOTES, 'UTF-8'); ?></td>
+              </tr>
+              <tr>
+                <th scope="row">Nivel de Experiencia</th>
+                <td><?php echo htmlspecialchars($experience, ENT_QUOTES, 'UTF-8'); ?></td>
+              </tr>
+              <tr>
+                <th scope="row">Frecuencia Entreno (días/sem)</th>
+                <td><?php echo htmlspecialchars($freq, ENT_QUOTES, 'UTF-8'); ?></td>
+              </tr>
+              <tr>
+                <th scope="row">Max BPM</th>
+                <td><?php echo htmlspecialchars($max_bpm, ENT_QUOTES, 'UTF-8'); ?></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
+        <!-- Segunda columna -->
+        <div class="col-md-6">
+          <table class="table table-striped">
+            <tbody>
+              <tr>
+                <th scope="row">Avg BPM</th>
+                <td><?php echo htmlspecialchars($avg_bpm, ENT_QUOTES, 'UTF-8'); ?></td>
+              </tr>
+              <tr>
+                <th scope="row">Resting BPM</th>
+                <td><?php echo htmlspecialchars($resting_bpm, ENT_QUOTES, 'UTF-8'); ?></td>
+              </tr>
+              <tr>
+                <th scope="row">Duración Sesión (horas)</th>
+                <td><?php echo htmlspecialchars($duration, ENT_QUOTES, 'UTF-8'); ?></td>
+              </tr>
+              <tr>
+                <th scope="row">Ingesta Agua (litros)</th>
+                <td><?php echo htmlspecialchars($water, ENT_QUOTES, 'UTF-8'); ?></td>
+              </tr>
+              <tr>
+                <th scope="row">Entrenamiento Cardio</th>
+                <td><?php echo ($cardio === 1) ? 'Sí' : 'No'; ?></td>
+              </tr>
+              <tr>
+                <th scope="row">Entrenamiento HIIT</th>
+                <td><?php echo ($hiit === 1) ? 'Sí' : 'No'; ?></td>
+              </tr>
+              <tr>
+                <th scope="row">Entrenamiento Strength</th>
+                <td><?php echo ($strength === 1) ? 'Sí' : 'No'; ?></td>
+              </tr>
+              <tr>
+                <th scope="row">Entrenamiento Yoga</th>
+                <td><?php echo ($yoga === 1) ? 'Sí' : 'No'; ?></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!-- Enlace para volver al formulario -->
+    <a href="index.php">↩️ Volver al formulario</a> 
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

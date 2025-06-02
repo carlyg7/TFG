@@ -6,6 +6,10 @@
 <head>
   <meta charset="UTF-8" />
   <title>Predicción de Calorías y Cluster</title>
+  <link rel="icon" href='data:image/svg+xml;utf8,
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+      <text y="0.9em" font-size="90">🏋️‍♀️</text>
+    </svg>'>
   <!-- Bootstrap 5 CSS (CDN) -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
@@ -34,7 +38,7 @@
 
   <div class="container">
     <div class="form-container">
-      <h2 class="form-header text-primary fw-bold">Predicción de Calorías y Cluster</h2>
+      <h3 class="form-header text-primary fw-bold">Predicción de <span class="text-decoration-underline">Calorías Quemadas</span> en una sesión de entrenamiento</h3>
       <form action="predict.php" method="post">
 
         <!-- Dividimos en 3 columnas en pantallas md+ -->
