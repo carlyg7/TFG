@@ -39,7 +39,7 @@
   <div class="container">
     <div class="form-container">
       <h3 class="form-header text-primary fw-bold">Predicción de <span class="text-decoration-underline">Calorías Quemadas</span> en una sesión de entrenamiento</h3>
-      <form action="predict.php" method="post">
+      <form action="select_scenario.php" method="post">
 
         <!-- Dividimos en 3 columnas en pantallas md+ -->
         <div class="row g-4">

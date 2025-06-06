@@ -1,25 +1,37 @@
 <?php
+session_start();
 // predict.php
 header('Content-Type: text/html; charset=UTF-8');
 
-// 1. Recoger datos POST y convertir a float/entero
-$age         = floatval($_POST['age']);
-$weight      = floatval($_POST['weight']);
-$height      = floatval($_POST['height']);
-$bmi         = floatval($_POST['bmi']);
-$fat_pct     = floatval($_POST['fat_pct']);
-$experience  = floatval($_POST['experience']);
-$freq        = floatval($_POST['freq']);
+if (!isset($_SESSION['form_data'])) {
+  echo "Error: No se han recibido datos del formulario.";
+  exit;
+}
 
-$max_bpm     = floatval($_POST['max_bpm']);
-$avg_bpm     = floatval($_POST['avg_bpm']);
-$resting_bpm = floatval($_POST['resting_bpm']);
-$duration    = floatval($_POST['duration']);
-$water       = floatval($_POST['water']);
-$cardio      = intval($_POST['cardio']);
-$hiit        = intval($_POST['hiit']);
-$strength    = intval($_POST['strength']);
-$yoga        = intval($_POST['yoga']);
+$form = $_SESSION['form_data'];
+
+// Recuperar escenario
+$escenario = $_POST['escenario'];
+
+// 1. Recoger datos POST y convertir a float/entero
+$age         = floatval($form['age']);
+$weight      = floatval($form['weight']);
+$height      = floatval($form['height']);
+$bmi         = floatval($form['bmi']);
+$fat_pct     = floatval($form['fat_pct']);
+$experience  = floatval($form['experience']);
+$freq        = floatval($form['freq']);
+
+$max_bpm     = floatval($form['max_bpm']);
+$avg_bpm     = floatval($form['avg_bpm']);
+$resting_bpm = floatval($form['resting_bpm']);
+$duration    = floatval($form['duration']);
+$water       = floatval($form['water']);
+$cardio      = intval($form['cardio']);
+$hiit        = intval($form['hiit']);
+$strength    = intval($form['strength']);
+$yoga        = intval($form['yoga']);
+
 
 // 2. Construir la ruta al script Python
 $python = 'C:\\Users\\carlo\\AppData\\Local\\Programs\\Python\\Python310\\python.exe';
@@ -85,7 +97,17 @@ $output = shell_exec($cmd);
   <div class="form-container">
     <h2 class="form-header text-primary fw-bold">Resultado de Predicción</h2>
     <div class="result">
-      <pre><?php echo htmlspecialchars($output); ?></pre>
+    <?php
+      if ($escenario === 'A') {
+        // Mostrar todo (grupo + calorías)
+        echo '<pre>' . htmlspecialchars($output) . '</pre>';
+      } else {
+        // Extraer y mostrar solo la línea de calorías
+        preg_match('/Calorías estimadas.+?: (.+)/', $output, $match);
+        $solo_calorias = $match[0] ?? 'Calorías no disponibles.';
+        echo '<pre>' . htmlspecialchars($solo_calorias) . '</pre>';
+      }
+    ?>
     </div>
     <h4 class="text-center text-primary">🏅 Tu sesión de entrenamiento 🏅</h4>
     <!-- Zona con la tabla de valores ingresados -->
@@ -179,3 +201,4 @@ $output = shell_exec($cmd);
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+?>

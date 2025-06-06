@@ -6,6 +6,9 @@ import os
 import numpy as np
 import joblib
 import warnings
+from sklearn.exceptions import InconsistentVersionWarning
+warnings.filterwarnings("ignore", category=InconsistentVersionWarning)
+
 
 # ───────────────────────────────────────────────────────────────
 # Forzar a que stdout use UTF-8 en lugar de cp1252 u otro encoding
@@ -55,19 +58,17 @@ def main(args):
 
     # Mapa de etiquetas Perfil grupo
     perfiles = {
-        0: "0. Atletas avanzados de alto volumen:",
-        1: "1. Principiantes de bajo volumen y enfoque general:",
-        2: "2. Intermedios con énfasis en fuerza y equilibrio:",
-        3: "3. Principiantes-Intermedios enfocados en la pérdida de peso:"
+        0: "0. Usuarios intermedios y constantes:",
+        1: "1. Usuarios delgados con grasa elevada:",
+        2: "2. Usuarios con obesidad y baja frecuencia:"
     }
     perfil_texto = perfiles.get(cluster_label, f"Cluster desconocido ({cluster_label})")
 
     # Mapa de etiquetas a descripciones del grupo
     perfiles2 = {
-        0: "Al combinar un nivel de experiencia alto con sesiones prolongadas y frecuencia semanal muy elevada, este grupo entrena con gran volumen e intensidad.",
-        1: "Al tratarse de usuarios con poca experiencia, baja frecuencia y sesiones cortas, con un enfoque más general (mezclan cardio y fuerza).",
-        2: "Su experiencia intermedia y la alta proporción de entrenamiento, junto con frecuencia moderada, sugieren un grupo con base de fuerza y trabajo de flexibilidad/equilibrio.",
-        3: "Al ser usuarios con sobrepeso/obesidad, experiencia limitada y con el objetivo principal de pérdida de peso."
+        0: "Grupo equilibrado y constante. Representa a usuarios con un buen control físico, que entrenan de forma regular y podrían beneficiarse de planes de mantenimiento.",
+        1: "Necesitan programas centrados en la fuerza, para mejorar su rendimiento físico y salud metabólica.",
+        2: "Perfil típico de obesidad con sedentarismo relativo. Necesitan intervenciones progresivas orientadas a la pérdida de grasa y mejora del hábito de entrenamiento."
     }
     perfil_desc = perfiles2.get(cluster_label, f"Cluster desconocido ({cluster_label})")
 
@@ -90,9 +91,9 @@ def main(args):
     pred_calories = gb_global.predict(all_scaled)[0]
 
     # 8. Imprimir resultados formateados
-    print(f"🔵 Grupo {perfil_texto}")
+    print(f"🔹 Grupo {perfil_texto}")
     print(f"{perfil_desc}")
-    print(f"\n🔵 Calorías estimadas según tu sesión de entreno: {pred_calories:.2f}")
+    print(f"\n🔹 Calorías estimadas según tu sesión de entreno: {pred_calories:.2f}")
 
 if __name__ == "__main__":
     main(sys.argv[1:])
