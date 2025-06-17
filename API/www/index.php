@@ -1,5 +1,6 @@
 <?php
-// index.php
+  session_start();
+  include 'header.php';
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -16,7 +17,6 @@
     body {
       background: #f9f9f9;
       font-family: Arial, sans-serif;
-      padding-top: 20px;
     }
     .form-container {
       background: #fff;
@@ -209,8 +209,13 @@
             <button type="submit" class="btn btn-primary btn-lg">Enviar</button>
           </div>
         </div>
-
       </form>
+      <?php if (isset($_SESSION['user_id'])): ?>
+        <div class="col text-center mt-3">
+          <a href="historico.php" class="btn btn-outline-primary">📊 Ver historial de sesiones</a>
+        </div>
+      <?php endif; ?>
+
     </div> <!-- end form-container -->
   </div> <!-- end container -->
 

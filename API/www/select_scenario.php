@@ -1,5 +1,6 @@
 <?php
 session_start();
+include 'header.php';
 $_SESSION['form_data'] = $_POST;
 ?>
 <!DOCTYPE html>
@@ -16,7 +17,6 @@ $_SESSION['form_data'] = $_POST;
     body {
       background-color: #f9f9f9;
       font-family: Arial, sans-serif;
-      padding-top: 40px;
     }
     .card {
       max-width: 600px;
